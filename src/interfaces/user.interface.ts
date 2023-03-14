@@ -2,7 +2,7 @@ interface Users {
   id?: number;
   username: string;
   vocation: string;
-  level: number | string;
+  level: number;
   password: string;
 }
 
