@@ -10,7 +10,7 @@ const JWT_CONFIG: any = {
   expiresIn: '12d',
 };
 
-const createToken = (data: any) => jwt.sign({ data }, secret, JWT_CONFIG);
+const createToken = (data: { username: string }) => jwt.sign({ data }, secret, JWT_CONFIG);
 
 // const verifyToken = (token: any) => jwt.verify(token, secret);
 
@@ -21,7 +21,7 @@ class UserController {
     const user = req.body;
 
     const userCreated = await this.userService.create(user);
-    const token = createToken(userCreated.username);
+    const token = createToken(userCreated);
     res.status(statusCodes.CREATED).json({ token });
   };
 }
